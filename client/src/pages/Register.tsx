@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 
 const Register = () => {
 
+  const navigate=useNavigate();
   const [inputs, setInputs] = useState({ email: "", username: "", password: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,8 +14,8 @@ const Register = () => {
     try {
       e.preventDefault();
       const  {data } = await axios.post("auth/register", inputs);
-      console.log(data);
       setInputs({email: "", username: "", password: "" });
+      navigate("/login")
     }
     catch (err:any) {
       window.alert(err.response.data);

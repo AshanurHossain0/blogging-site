@@ -1,6 +1,7 @@
 require("dotenv").config();
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import postsRoute from "./routes/posts";
 import usersRoute from "./routes/users";
@@ -9,6 +10,7 @@ import authRoute from "./routes/auth";
 const app = express();
 const port = 8080;
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 app.use("/api/posts",postsRoute);

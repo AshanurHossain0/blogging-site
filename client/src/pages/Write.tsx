@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { UserState } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const Write = () => {
   const [value, setValue] = useState('')
+
+  const navigate=useNavigate();
+  const {currentUser}=UserState();
+  useEffect(()=>{
+    if(!(currentUser && currentUser.username)) navigate("/");
+    
+  },[currentUser])
 
   return (
     <div className='add'>

@@ -2,8 +2,12 @@ import React from 'react';
 import "../style.scss"
 import logo from "../images/logo2.png"
 import { Link } from 'react-router-dom';
+import { UserState } from '../context/authContext';
 
 const Navbar = () => {
+
+  const {currentUser,logout}=UserState();
+
   return (
     <div className='navbar'>
       <div className="container">
@@ -17,8 +21,8 @@ const Navbar = () => {
           <Link to="/?cat=cinema" className='link'><h6>CINEMA</h6></Link>
           <Link to="/?cat=design" className='link'><h6>DESIGN</h6></Link>
           <Link to="/?cat=food" className='link'><h6>FOOD</h6></Link>
-          <span>John</span>
-          <span>Logout</span>
+          <span>{currentUser?.username.split(" ")[0]}</span>
+          {(currentUser && currentUser.email)? <span onClick={logout}>Logout</span>:<Link className='link' to="/login">Login</Link>}
           <span className='write'>
             <Link className='link' to='/write'>Write</Link>
           </span>

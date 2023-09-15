@@ -23,9 +23,9 @@ const Single = () => {
           </div>
         </div>
         <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-        <p>
+        <div>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque nam enim aliquam rem, maiores tempore doloremque fugiat magnam. At placeat corporis ex ab. Dolor, non? Qui reiciendis consectetur repudiandae, similique ratione eius iusto vero dolore. Cupiditate neque nulla blanditiis et.</p><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque nam enim aliquam rem, maiores tempore doloremque fugiat magnam. At placeat corporis ex ab. Dolor, non? Qui reiciendis consectetur repudiandae, similique ratione eius iusto vero dolore. Cupiditate neque nulla blanditiis et.</p><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque nam enim aliquam rem, maiores tempore doloremque fugiat magnam. At placeat corporis ex ab. Dolor, non? Qui reiciendis consectetur repudiandae, similique ratione eius iusto vero dolore. Cupiditate neque nulla blanditiis et.</p>
-        </p>
+        </div>
       </div>
       <Menu/>
     </div>
