@@ -1,7 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
+import axios from "axios";
+import {Posts} from "../Models"
+
 
 const Home = () => {
+
+  const cat=useLocation().search;
+  
+
+  const [posts1,setPost1]=useState<Posts[]>([]);
+
+  useEffect(()=>{
+    const fetchData= async ()=>{
+      try{
+        const {data}=await axios.get(`${process.env.REACT_APP_PORT}/posts${cat}`)
+        setPost1(data);
+        // console.log(posts1);
+        
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    fetchData();
+  },[cat])
+
   const posts = [
     {
       id: 1,
@@ -32,7 +56,7 @@ const Home = () => {
     <div className='home'>
       <div className="posts">
         {
-          posts.map(post=>(
+          posts.map(post => (
             <div className="post" key={post.id}>
               <div className="img">
                 <img src={post.img} alt="" />
@@ -48,6 +72,7 @@ const Home = () => {
           ))
         }
       </div>
+      
     </div>
   )
 }

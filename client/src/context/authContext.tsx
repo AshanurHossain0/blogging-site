@@ -30,13 +30,13 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
     const login = async (inputs:LoginInfo) => {
         
-        const { data } = await axios.post("auth/login", inputs);
+        const { data } = await axios.post(`${process.env.REACT_APP_PORT}/auth/login`, inputs);
         
         setCurrentUser({email:data.email,username:data.username,id:data.id,img:data.img});
         
     }
     const logout = async () => {
-        await axios.post("auth/logout");
+        await axios.post(`${process.env.REACT_APP_PORT}/auth/logout`);
         setCurrentUser(null);
     }
     useEffect(() => {

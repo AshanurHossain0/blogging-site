@@ -8,7 +8,7 @@ export const register= async (req:Express.Request,res:Express.Response)=>{
     //Check existing user
     const q="SELECT * FROM users WHERE email= ? OR username=?"
     
-    db.query(q,[req.body.email,req.body.username],(err,data)=>{
+    db.query(q,[req.body.email,req.body.username],(err:any,data:any)=>{
         if(err) return res.status(500).json(err);
         if(data.length) return res.status(409).json("Username or email already exists!");
 
@@ -18,7 +18,7 @@ export const register= async (req:Express.Request,res:Express.Response)=>{
 
         const q="INSERT INTO users(`username`,`email`,`password`) VALUES (?)";
         const values=[req.body.username,req.body.email,hashPass];
-        db.query(q,[values],(err,data)=>{
+        db.query(q,[values],(err:any,data:any)=>{
             if(err) return res.json(err);
             return res.status(201).send("User has been created");
         })
@@ -28,7 +28,7 @@ export const register= async (req:Express.Request,res:Express.Response)=>{
 export const login= async (req:Express.Request,res:Express.Response)=>{
     //Check user existance
     const q="SELECT * FROM users WHERE email=? OR username=?";
-    db.query(q,[req.body.username,req.body.username],(err,data)=>{
+    db.query(q,[req.body.username,req.body.username],(err:any,data:any)=>{
         if(err) return res.status(500).json(err);
         
         if(!data.length) return res.status(404).json("User not found");

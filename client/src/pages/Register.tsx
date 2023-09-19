@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      const  {data } = await axios.post("auth/register", inputs);
+      const  {data } = await axios.post(`${process.env.REACT_APP_PORT}/auth/register`, inputs);
       setInputs({email: "", username: "", password: "" });
       navigate("/login")
     }

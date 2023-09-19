@@ -10,9 +10,14 @@ $lightPurple: #edc6f7;
 .app {
     display: flex;
     justify-content: center;
+    background: linear-gradient(rgba(167, 117, 117, 0.673),rgba(109, 109, 210, 0.554),rgba(143, 194, 143, 0.621));
+    z-index: -5;
 
     .container {
+        background-color: white;
+        z-index: 1;
         width: 1024px;
+        padding: 0px 40px;
 
         .link {
             text-decoration: none;
