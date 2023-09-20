@@ -1,12 +1,12 @@
-import Express from 'express';
+import {Request,Response} from 'express';
 import db from "../config/db";
 import bcrypt from "bcryptjs";
 import jwt from 'jsonwebtoken';
 
 
-export const register= async (req:Express.Request,res:Express.Response)=>{
+export const register= async (req:Request,res:Response)=>{
     //Check existing user
-    const q="SELECT * FROM users WHERE email= ? OR username=?"
+    const q="SELECT * FROM users WHERE `email`= ? OR `username`=?"
     
     db.query(q,[req.body.email,req.body.username],(err:any,data:any)=>{
         if(err) return res.status(500).json(err);
@@ -25,7 +25,7 @@ export const register= async (req:Express.Request,res:Express.Response)=>{
     })
 }
 
-export const login= async (req:Express.Request,res:Express.Response)=>{
+export const login= async (req:Request,res:Response)=>{
     //Check user existance
     const q="SELECT * FROM users WHERE email=? OR username=?";
     db.query(q,[req.body.username,req.body.username],(err:any,data:any)=>{
@@ -40,13 +40,14 @@ export const login= async (req:Express.Request,res:Express.Response)=>{
         //Create token
         const token=jwt.sign({id:data[0].id},process.env.JWT_SECRET);
         const {password,...others}=data[0];
-
         
-        res.cookie("access_token",token,{httpOnly:true}).status(200).json(others);
+        return res.cookie("access_token", token, {
+        httpOnly: true
+      }).status(200).json(others);
     })
 }
 
-export const logout= async (req:Express.Request,res:Express.Response)=>{
+export const logout= async (req:Request,res:Response)=>{
     return res.clearCookie("access_token",{
         sameSite:"none",
         secure:true
